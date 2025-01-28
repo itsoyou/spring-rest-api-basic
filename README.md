@@ -1,4 +1,4 @@
-# Rest api
+# Rest API with Spring Boot Basics
 
 ## how are the requests handled?
 DispatcherServlet: Front Controller Pattern
@@ -21,7 +21,7 @@ Auto configuration.(ErrorMvcAutoConfiguration)
 ## how are all jars(Spring MVC, Jackson, Tomcat) available?
 Starter project. Spring Boot Starter Web.
 
-# Rest API structure with User and Post
+## Rest API structure with User and Post
 
 GET: retrieve details of a resource
 POST: create a new resource
@@ -97,7 +97,7 @@ Summary: No Perfect Solution. Think about versioning even before you need it.
 One Enterprise - One Versioning Approach
 
 
-# HATEOAS: Hypermedia As The Engine Of Application State
+## HATEOAS: Hypermedia As The Engine Of Application State
 
 Websites allow you to see the data and perform action.
 Enhancing REST API to tell consumers how to perform subsequent actions.
@@ -110,4 +110,36 @@ a consistent and easy way to hyperlink between resources in you API.
 Dependency: spring-boot-starter-hateoas
 Use "EntityModel" and "WebMvcLinkBuilder"
 
+## Serialization: Convert object to stream e.g. JSON
 
+Jackson: most popular JSON Serialization in Java
+
+To customize return object:
+
+1. Customize field names in response: @JSONProperty
+2. Return only selected fields - Filtering
+	- Static filtering: same filtering for a bean across different API => @JsonIgnoreProperties, @JsonIgnore
+	- Dynamic filtering: customize filtering for a bean for specific API. => @JsonFilter + FilterProvider
+
+## Spring Boot Actuator
+
+provides production ready features. e.g. Monitor and manage your app in prod.
+provides number of endpoints.
+/actuator/beans
+/actuator/health
+/actuator/metrics
+/actuator/mappings
+
+dependency: srping-boot-starter-actuator
+to see more than health endpoint, configure this in application.properties
+management.endpoints.web.exposure.include=*
+
+## Explore Rest API using HAL(JSON Hypertext Application Language) Explorer
+"_links" : { ... }
+simple format that gives a consistent and easy way to hyperlink between resources in you API.
+
+### HAL Explorer
+enable non-technical teams to play with API.
+dependency: spring-data-rest-hal-explorer
+
+If this is enabled, localhost:8080 will redirected to http://localhost:8080/explorer/index.html#uri=/
