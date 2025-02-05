@@ -143,3 +143,25 @@ enable non-technical teams to play with API.
 dependency: spring-data-rest-hal-explorer
 
 If this is enabled, localhost:8080 will redirected to http://localhost:8080/explorer/index.html#uri=/
+
+
+# Use mysqlsh
+
+mysqlsh
+\connect social-media-user@localhost:3306
+\use social-media-database
+select * from user_details;
+select * from post;
+\quit
+
+# Spring Security
+
+intercept the request and executes series of filters(Filter Chains)
+
+1. All requests should be authenticated
+2. if a request is not authenticated, a web page is shown for log in
+3. CSRF-> POST, PUT
+
+## HTTP authentication
+
+We will create configuration file where we define FilterChain Bean.
